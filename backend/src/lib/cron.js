@@ -11,7 +11,7 @@ const job = new CronJob("*/14 * * * *", function () {
 
     client
         .get(url, (res) => {
-            if (res.statusCode === 200) console.log('get requeist sent')
+            if (res.statusCode === 200) console.log('get request sent')
             else console.log('get req failed', res.statusCode)
         })
         .on('error', (e) => console.error('error while sending request', e))
