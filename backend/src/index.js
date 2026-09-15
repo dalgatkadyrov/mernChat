@@ -30,7 +30,7 @@ app.get('/health', (req, res) => {
 //its for production build
 if (fs.existsSync(publicDir)) {
     app.use(express.static(publicDir))
-    
+
     app.get('/{*any}', (req, res, next) => {
         res.sendFile(path.join(publicDir, 'index.html'), (err) => next(err))
     })
@@ -39,4 +39,6 @@ if (fs.existsSync(publicDir)) {
 app.listen(PORT, () => {
     connectDB()
     console.log('server is on', PORT)
+
+    if (process.env.NODE_ENV === 'production') job.start()
 })
